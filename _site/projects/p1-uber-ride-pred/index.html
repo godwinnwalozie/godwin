@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link rel="stylesheet" href="/assets/css/main.css">
+
+        <!-- <h1 class="post-headline">Godwin Nwalozie</h1> 
+        <h3 class="post-description">Data is oxygen of business</h3> -->
+
+        <!-- Load fontawesome here for faster loadtimes: https://stackoverflow.com/a/35880730/9523246 -->
+        <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.11.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
+
+    </head>
+
+    <body>
+        <main>
+            
+          
+      <a href="/">
+        <img  src="/assets/images/godwin.gif" 
+            alt=""  >
+      </a>
+
+
+          <br>
+          <img src="/assets/images/role.gif" /> 
+      
+        <div style="line-height:50%;">
+        <br>
+    </div>
+<div class="links scroll">
+        <a href="/">Profile</a>
+
+        <a href="/resume/">Resume</a>
+
+        <!-- <a href="/pr/">Projects</a> -->
+
+        <a href="/blog/">Hands-on</a>
+        <!-- <a href="/archive/">Archive</a> -->
+</div>
+
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>EDA of My Uber🚘 Ride History, from unstructured data | Godwin Nwalozie</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="EDA of My Uber🚘 Ride History, from unstructured data" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Exploratory Data Analysis with Python + Libraries. Unstructured data to structured with analysis" />
+<meta property="og:description" content="Exploratory Data Analysis with Python + Libraries. Unstructured data to structured with analysis" />
+<link rel="canonical" href="https://godwinn.me/projects/p1-uber-ride-pred/" />
+<meta property="og:url" content="https://godwinn.me/projects/p1-uber-ride-pred/" />
+<meta property="og:site_name" content="Godwin Nwalozie" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-10-07T11:29:06+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="EDA of My Uber🚘 Ride History, from unstructured data" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-10-07T11:29:06+01:00","datePublished":"2022-10-07T11:29:06+01:00","description":"Exploratory Data Analysis with Python + Libraries. Unstructured data to structured with analysis","headline":"EDA of My Uber🚘 Ride History, from unstructured data","mainEntityOfPage":{"@type":"WebPage","@id":"https://godwinn.me/projects/p1-uber-ride-pred/"},"url":"https://godwinn.me/projects/p1-uber-ride-pred/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+        <!-- Generated using https://favicon.io/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png?">
+<link rel="manifest" href=site.webmanifest">
+
+
+        <!-- MathJax -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+     processEscapes: true
+    }
+  });
+</script>
+
+            <article>
+                <p></p>
+
+<h1 class="post-headline">EDA of My Uber🚘 Ride History, from unstructured data</h1>
+<p class="meta"><small>October 07, 2022</small></p>
+
+<br/>
+<hr>
+
+# This exercise was born out of curiosity. 🤔
+I drive a lot, but I was curious to find out how much money I had spent, and what time of day had the most rides on Uber, since my first ride in December 2016. 
+
+**However, according to Uber's policy, only the past 30 days' worth of ride history data can be provided.** 
+
+<br/>
+
+Link to notebook on github [![github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/godwinnwalozie/uber-ride-exploratory-data-analysis)
+
+<br/>
+<hr>
+
+
+### (1) Getting my Uber ride data or the trip history from Uber online. 
+
+1. > So I logged on to my uber [account online](https://auth.uber.com/v2/?breeze_local_zone=dca11&next_url=https%3A%2F%2Fmyprivacy.uber.com%2Fprivacy%2Fexploreyourdata%2Fdownload&state=x-mTnK1mYTvzj53uHPheK7nBXagwNslhm-ArvozvDx8%3D).
+
+2. > After login, click the Trips tab.
+
+
+
+<!-- Example modified from [here](http://www.unexpected-vortices.com/sw/rippledoc/quick-markdown-example.html){:target="_blank"}. -->
+
+
+<!-- <img src="/assets/images/uber_trip_project1.png"/>  -->
+![My Image](/assets/images/uber_trip_project1.png){:height="300px" width="550px"}
+
+
+<br/>
+<hr>
+
+### (2) Copying the data and pasting into excel
+1. > Then select to highlight your report from top to botton. 
+
+2. > Copy this and paste in an excel workbook. Save as csv file format.
+
+![My Image](/assets/images/uber_trip_project2.png){:height="370px" width="750px"}
+
+
+
+<br/>
+<hr>
+
+### (3) Importing with pandas
+1. >Import with pandas into your IDE or prefered code editor such as Jupyter notebook or Visual Studio code pandas. Here I am using VSC.
+
+![My Image](/assets/images/uber_trip_project3.png){:height="370px" width="750px"}
+
+You will get a dataframe that has a single column, unstructured data lumped together.
+![My Image](/assets/images/uber_trip_project4.png){:height="370px" width="750px"}
+
+<br/>
+<hr>
+
+### (4) Preprocessing data to get the needed features.
+1. >You will have to apply all forms of preprocessing methods, looping through the column to extract the required features.
+
+This was my final dataframe. The 0.00 km and NGN0.00 (Nigerian Naira) indicates cancelled trips.
+
+![My Image](/assets/images/uber_trip_project5.png){:height="370px" width="750px"}
+
+<br/>
+<hr>
+
+## (5) Findings from data exploration and analysis
+* I have booked a total of  433 trips on Uber mobile app (Dec 16, 2016 - August 30 ,2022)
+* About 208 completed trips and 227 cancelled :-)
+
+Spent N322,000 Nigerian Naira so far == USD 631 , by todays exhange rate\
+![My Image](/assets/images/uber_trip_project9.png){:height="220px" width="700px"}
+
+
+![My Image](/assets/images/uber_trip_project8.png){:height="370px" width="750px"}
+
+<hr>
+I have done more trips diring the morning and night 
+![My Image](/assets/images/uber_trip_project6.png){:height="370px" width="750px"}
+
+<hr>
+
+Price and distance are positively(high) correlated
+![My Image](/assets/images/uber_trip_project7.png){:height="370px" width="750px"}
+
+
+<br/>
+<hr>
+
+### (6) Short video illustrating the steps
+This short video will give you a glimpse on the preprocessing steps to final dataframe
+<video width="800" controls="controls">
+  <source src="/assets/images/uber_ride_history.mp4">
+</video>
+
+<br/>
+# Thank you for your time 🙏
+
+<!-- Comments only for posts -->
+
+
+            </article>
+        </main>
+
+        <footer>
+          <p class="copy">
+            <!-- <small> &copy; Godwin Nwalozie | 2022 | +234 8037611922 -->
+              <small> Godwin Nwalozie @2022 
+                    
+                    <!-- <a target="_blank" href="https://github.com/jitinnair1/gradfolio/">Gradfolio</a>  -->
+                     | Last updated on 07 October 2022
+            </small>
+          </p>
+
+        <div class="rounded-social-buttons"><a title=""
+class="social-button email" itemprop="email"
+href="mailto:%67%6F%64%77%69%6E.%6E%77%61%6C%6F%7A%69%65@%67%6D%61%69%6C.%63%6F%6D" target="_blank">
+<i class="far fa-envelope"></i>
+</a><a title=""
+class="social-button linkedin"
+href="https://www.linkedin.com/in/godwinnwalozie" itemprop="sameAs"
+target="_blank">
+<i class="fab fa-linkedin"></i>
+</a><a title=""
+class="social-button github"
+href="https://www.github.com/godwinnwalozie" itemprop="sameAs"
+target="_blank">
+<i class="fab fa-github"></i>
+</a><a title=""
+class="social-button researchgate"
+href="https://www.kaggle.com/godwinnwalozie" itemprop="sameAs"
+target="_blank">
+<i class="fab fa-kaggle"></i>
+</a><a title=""
+class="social-button twitter"
+href="https://www.twitter.com/godwinnwalozie" itemprop="sameAs"
+target="_blank">
+<i class="fab fa-twitter"></i>
+</a></div>
+
+
+        </footer>
+
+        <!-- Google Analytics Tracking code -->
+<script src="https://cdn.jsdelivr.net/npm/ga-lite@1/dist/ga-lite.min.js" async></script>
+<script>
+var galite = galite || {};
+galite.UA = '';
+</script>
+
+    </body>
+
+</html>
+
+
+
+<!-- # custom bodey background -->
+
+<!-- 
+  <html>
+    <head>
+    <style>
+    body {
+      background-image: url('/assets/images/bkg.jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;  
+      background-size: cover;   
+    }
+    </style>
+    </head>
+
+    </html  -->
